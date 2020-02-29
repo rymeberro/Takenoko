@@ -10,6 +10,7 @@ public class PlayerBoard {
 	private List<Plot> plots;
 	private List<Goal> goals;
 	private List<WaterChannel> waterChannels;
+	private int countGoalAchieved;
 
 	
 	public PlayerBoard()
@@ -17,6 +18,7 @@ public class PlayerBoard {
 		this.plots = new ArrayList<Plot>();
 		this.goals = new ArrayList<Goal>();
 		this.waterChannels = new ArrayList<WaterChannel>();
+		this.countGoalAchieved = 0;
 	}
 
 	public List<Plot> getPlotList () {
@@ -40,6 +42,8 @@ public class PlayerBoard {
 		}
 		return plot;
 	}
+
+	public int getCountGoalAchieved() { return this.getCountGoalAchieved(); }
 
 	public void addPlot(Plot i_plot)
 	{
