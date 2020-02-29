@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import uqam.inf5153.game.modeles.goals.Goal;
-import uqam.inf5153.game.modeles.plots.Plot;
 
 public class PlayerBoard {
 

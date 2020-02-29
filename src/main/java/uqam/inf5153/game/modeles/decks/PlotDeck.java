@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
-import uqam.inf5153.game.modeles.plots.Plot;
+import uqam.inf5153.game.modeles.Plot;
 
 public class PlotDeck implements Deck<Plot> {
 

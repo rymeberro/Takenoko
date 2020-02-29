@@ -1,6 +1,6 @@
 package uqam.inf5153.game.modeles;
 
-public class Gardener implements Pion {
+public class Gardener implements Placable {
 	
 	private Position position;
 
@@ -8,8 +8,9 @@ public class Gardener implements Pion {
 	public Position getPosition() { return this.position; }
 
 	@Override
-	public void setPosition(int x, int y) {
-		this.position = new Position(x, y);
+	public void setPosition(double x, double y) {
+
 	}
+
 
 }

@@ -4,7 +4,7 @@ import org.junit.Before;
 import uqam.inf5153.game.modeles.PlayerBoard;
 import uqam.inf5153.game.modeles.Position;
 import uqam.inf5153.game.modeles.goals.PlotGoal;
-import uqam.inf5153.game.modeles.plots.Plot;
+import uqam.inf5153.game.modeles.Plot;
 
 import java.util.ArrayList;
 
