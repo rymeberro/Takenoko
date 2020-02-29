@@ -1,12 +1,12 @@
-package main.java.uqam.inf5153.game.modeles;
+package uqam.inf5153.game.modeles;
+
+import uqam.inf5153.game.modeles.PlayerBoard;
+import uqam.inf5153.game.modeles.Plot;
+import uqam.inf5153.game.modeles.decks.PlotDeck;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import main.java.uqam.inf5153.game.modeles.goals.Goal;
-import main.java.uqam.inf5153.game.modeles.plots.Plot;
-import main.java.uqam.inf5153.game.modeles.PlayerBoard;
-import main.java.uqam.inf5153.game.modeles.decks.PlotDeck;
 
 public class Player
 {
@@ -29,7 +29,7 @@ public class Player
     }
 
     // When player takes 3 plots, they are added in the player's standby list of plots
-    public addToStandByList(List<Plot> i_plots)
+    public void addToStandByList(List<Plot> i_plots)
     {
         for(Plot plot : i_plots)
         {
