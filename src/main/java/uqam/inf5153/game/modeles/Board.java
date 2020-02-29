@@ -16,7 +16,7 @@ public class Board {
 
 	}
 
-	public boolean placePlot(Placable element, double x, double y) {
+	public boolean placePlot(Plot element, double x, double y) {
 		element.setPosition(x,y);
 		return plotList.place(element);
 	}
