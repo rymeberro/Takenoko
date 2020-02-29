@@ -1,13 +1,14 @@
 package uqam.inf5153.game.modeles;
 
+import java.awt.image.AreaAveragingScaleFilter;
 import java.util.ArrayList;
 
 
 public class Board {
 
-	private PlacableList pieceList;
-	private PlacableList plotList;
-	private PlacableList waterChannelList;
+	private PieceList pieceList;
+	private PlotList plotList;
+	private WaterChannelList waterChannelList;
 
 	public Board() {
 		this.pieceList = new PieceList();
@@ -16,7 +17,7 @@ public class Board {
 
 	}
 
-	public boolean placePlot(Placable element, double x, double y) {
+	public boolean placePlot(Plot element, double x, double y) {
 		element.setPosition(x,y);
 		return plotList.place(element);
 	}
@@ -26,7 +27,11 @@ public class Board {
 		return waterChannelList.place(waterChannel);
 	}
 
-	public ArrayList<Position> getAllPlot() {
+	public ArrayList<Position> getAllPlotPos() {
+		return plotList.getAllPos();
+	}
+
+	public ArrayList<Plot> getAllPlot(){
 		return plotList.getAll();
 	}
 
@@ -34,5 +39,6 @@ public class Board {
 		Position position = new Position(x, y);
 		return position;
 	}
+
 
 }

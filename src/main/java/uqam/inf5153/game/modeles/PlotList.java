@@ -72,8 +72,15 @@ public class PlotList implements PlacableList<Plot> {
         }
     }
 
-    @Override
     public ArrayList getAll(){
+        ArrayList list = new ArrayList();
+        for(Plot p: plots){
+            list.add(p);
+        }
+        return list;
+    }
+
+    public ArrayList getAllPos(){
         ArrayList list = new ArrayList();
         for(Plot p: plots){
             list.add(p.getPosition());

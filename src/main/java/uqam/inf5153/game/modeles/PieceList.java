@@ -20,7 +20,6 @@ public class PieceList implements PlacableList<Piece> {
         return false;
     }
 
-    @Override
     public ArrayList<Position> getAll() {
         return null;
     }
