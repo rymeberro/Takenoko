@@ -41,5 +41,24 @@ public class PlayerBoard {
 		return plot;
 	}
 
+	public void addPlot(Plot i_plot)
+	{
+		this.plots.add(i_plot);
+	}
+
+	public void addGoal(Goal i_goal)
+	{
+		this.goals.add(i_goal);
+	}
+
+	public void addWaterChannel(WaterChannel i_irrigation)
+	{
+		this.waterChannels.add(i_irrigation);
+	}
+
+	public WaterChannel popWaterChannel(int i_index)
+	{
+		return this.waterChannels.get(i_index);
+	}
 
 }
