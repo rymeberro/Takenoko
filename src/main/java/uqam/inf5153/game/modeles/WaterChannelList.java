@@ -3,7 +3,7 @@ package uqam.inf5153.game.modeles;
 import java.util.ArrayList;
 
 
-public class WaterChannelList implements PlacableList<WaterChannel> {
+public class WaterChannelList extends PlacableList<WaterChannel> {
 
     private ArrayList<WaterChannel> waterChannels;
 
@@ -24,9 +24,11 @@ public class WaterChannelList implements PlacableList<WaterChannel> {
         waterChannels.add(waterChannel6);
     }
 
-    @Override
-    public boolean place(WaterChannel waterChannel) {
-        if(verifyIfPlacable(waterChannel)){
+    public boolean place(Plot element1, Plot element2, ArrayList<Plot> list) {
+        if(verifyIfPlacable(element1,element2, list)){
+            double posX = (element1.getPosition().getX() + element2.getPosition().getX())/2;
+            double posY = (element1.getPosition().getY() + element2.getPosition().getY())/2;
+            WaterChannel waterChannel = new WaterChannel(new Position(posX,posY));
             waterChannels.add(waterChannel);
             return true;
         }else{
@@ -34,12 +36,18 @@ public class WaterChannelList implements PlacableList<WaterChannel> {
         }
     }
 
-    @Override
-    public boolean verifyIfPlacable(WaterChannel waterChannel) {
-        if(this.waterChannels.contains(waterChannel.getPosition())){
-            return false;
-        }else {
+    public boolean verifyIfPlacable(Plot element1, Plot element2, ArrayList<Plot> list ) {
+        if (!list.contains(element1) && !list.contains(element2)){
+            boolean res = true;
             boolean valid = false;
+            double posX = (element1.getPosition().getX() + element2.getPosition().getX())/2;
+            double posY = (element1.getPosition().getY() + element2.getPosition().getY())/2;
+            WaterChannel waterChannel = new WaterChannel(new Position(posX,posY));
+            for(WaterChannel w: waterChannels){
+                if (w.getPosition().getX() == posX && w.getPosition().getY() == posY){
+                    res = false;
+                }
+            }
             for (WaterChannel i : waterChannels) {
                 if (i.getPosition().getX() + 0.5 == waterChannel.getPosition().getX() &&
                         i.getPosition().getY() + 1 == waterChannel.getPosition().getY()) {
@@ -55,14 +63,25 @@ public class WaterChannelList implements PlacableList<WaterChannel> {
                     valid = true;
                 }
             }
-            return valid;
+            return valid && res;
+        }else{
+            return false;
         }
+
+    }
+
+    public ArrayList getAllPos(){
+        ArrayList list = new ArrayList();
+        for(WaterChannel p: waterChannels){
+            list.add(p.getPosition());
+        }
+        return list;
     }
 
     public ArrayList getAll(){
         ArrayList list = new ArrayList();
         for(WaterChannel p: waterChannels){
-            list.add(p.getPosition());
+            list.add(p);
         }
         return list;
     }

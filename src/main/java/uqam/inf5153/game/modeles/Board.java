@@ -9,12 +9,13 @@ public class Board {
 	private PieceList pieceList;
 	private PlotList plotList;
 	private WaterChannelList waterChannelList;
+	private Gardener gardener;
 
 	public Board() {
 		this.pieceList = new PieceList();
 		this.plotList = new PlotList();
 		this.waterChannelList = new WaterChannelList();
-
+		this.gardener = new Gardener(0,0);
 	}
 
 	public boolean placePlot(Plot element, double x, double y) {
@@ -22,9 +23,8 @@ public class Board {
 		return plotList.place(element);
 	}
 
-	public boolean placeWaterChannel(double x, double y) {
-		WaterChannel waterChannel = new WaterChannel(createPosition(x, y));
-		return waterChannelList.place(waterChannel);
+	public boolean placeWaterChannel(Plot element1, Plot element2) {
+		return waterChannelList.place(element1, element2, getAllPlot() );
 	}
 
 	public ArrayList<Position> getAllPlotPos() {
@@ -35,9 +35,17 @@ public class Board {
 		return plotList.getAll();
 	}
 
-	private Position createPosition(double x, double y) {
-		Position position = new Position(x, y);
-		return position;
+	public ArrayList<WaterChannel> getAllWaterChannel(){
+		return waterChannelList.getAll();
+	}
+
+	public boolean isPlotIrrigated(Plot element){
+		ArrayList<WaterChannel> wtc = getAllWaterChannel();
+		return this.plotList.isPlotIrrigated(element,wtc);
+	}
+
+	public boolean moveGardenerTo(double x, double y){
+		return this.gardener.moveTo(x,y,getAllPlot());
 	}
 
 
