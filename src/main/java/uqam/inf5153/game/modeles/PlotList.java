@@ -2,7 +2,7 @@ package uqam.inf5153.game.modeles;
 
 import java.util.ArrayList;
 
-public class PlotList implements PlacableList<Plot> {
+public class PlotList extends PlacableList<Plot> {
     private ArrayList<Plot> plots;
     private ArrayList<Position> startingPosition;
 
@@ -21,7 +21,6 @@ public class PlotList implements PlacableList<Plot> {
 
     @Override
     public boolean place(Plot plot) {
-
         if(verifyIfPlacable(plot)){
             plots.add(plot);
             return true;
@@ -30,7 +29,6 @@ public class PlotList implements PlacableList<Plot> {
         }
     }
 
-    @Override
     public boolean verifyIfPlacable(Plot plot) {
         if(this.startingPosition.contains(plot.getPosition()) && !this.plots.contains(plot)){
             return true;
@@ -74,7 +72,7 @@ public class PlotList implements PlacableList<Plot> {
 
     public ArrayList getAll(){
         ArrayList list = new ArrayList();
-        for(Plot p: plots){
+        for(Plot p: this.plots){
             list.add(p);
         }
         return list;
@@ -82,10 +80,39 @@ public class PlotList implements PlacableList<Plot> {
 
     public ArrayList getAllPos(){
         ArrayList list = new ArrayList();
-        for(Plot p: plots){
+        for(Plot p: this.plots){
             list.add(p.getPosition());
         }
         return list;
     }
 
+    public boolean isPlotIrrigated(Plot element, ArrayList<WaterChannel> wtc) {
+        boolean res = false;
+        if (!this.plots.contains(element)){
+            return false;
+        }else{
+            for(WaterChannel w: wtc){
+                if (element.getPosition().getX() + 1 == w.getPosition().getX()
+                        && element.getPosition().getY() == w.getPosition().getY()){
+                    res = true;
+                }else if (element.getPosition().getX() -1 == w.getPosition().getX()
+                        && element.getPosition().getY() == w.getPosition().getY()){
+                    res = true;
+                }else if (element.getPosition().getX() +0.5 == w.getPosition().getX()
+                        && element.getPosition().getY() -1 == w.getPosition().getY()){
+                    res = true;
+                }else if (element.getPosition().getX() -0.5 == w.getPosition().getX()
+                        && element.getPosition().getY() -1 == w.getPosition().getY()){
+                    res = true;
+                }else if (element.getPosition().getX() +0.5 == w.getPosition().getX()
+                        && element.getPosition().getY() +1 == w.getPosition().getY()){
+                    res = true;
+                }else if (element.getPosition().getX() +0.5 == w.getPosition().getX()
+                        && element.getPosition().getY() +1 == w.getPosition().getY()){
+                    res = true;
+                }
+            }
+        }
+        return res;
+    }
 }

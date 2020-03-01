@@ -24,12 +24,12 @@ public class Plot implements Placable {
 
 	@Override
 	public void setPosition(double x, double y) {
-
+		this.position = new Position(x,y);
 	}
 
 	@Override
 	public void setPosition(Position position) {
-
+		this.position = position;
 	}
 
 	public String getColor ( ) {
