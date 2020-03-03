@@ -70,16 +70,18 @@ public class WaterChannelList extends PlacableList<WaterChannel> {
 
     }
 
-    public ArrayList getAllPos(){
-        ArrayList list = new ArrayList();
+    @Override
+    public ArrayList<Position> getAllPos(){
+        ArrayList<Position> list = new ArrayList<Position>();
         for(WaterChannel p: waterChannels){
             list.add(p.getPosition());
         }
         return list;
     }
 
-    public ArrayList getAll(){
-        ArrayList list = new ArrayList();
+    @Override
+    public ArrayList<WaterChannel> getAll(){
+        ArrayList<WaterChannel>list = new ArrayList<WaterChannel>();
         for(WaterChannel p: waterChannels){
             list.add(p);
         }

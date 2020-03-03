@@ -3,7 +3,7 @@ package uqam.inf5153.game.modeles;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PlacableList<T extends Placable> {
+public abstract class PlacableList<T extends Placable> {
     ArrayList<T> list;
 
     PlacableList(){
@@ -18,5 +18,8 @@ public class PlacableList<T extends Placable> {
             return false;
         }
     }
+
+    public abstract List<T> getAll();
+    public abstract List<Position> getAllPos();
 
 }

@@ -70,16 +70,18 @@ public class PlotList extends PlacableList<Plot> {
         }
     }
 
-    public ArrayList getAll(){
-        ArrayList list = new ArrayList();
+    @Override
+    public ArrayList<Plot> getAll(){
+        ArrayList<Plot> list = new ArrayList<Plot>();
         for(Plot p: this.plots){
             list.add(p);
         }
         return list;
     }
 
-    public ArrayList getAllPos(){
-        ArrayList list = new ArrayList();
+    @Override
+    public ArrayList<Position> getAllPos(){
+        ArrayList<Position> list = new ArrayList<Position>();
         for(Plot p: this.plots){
             list.add(p.getPosition());
         }
