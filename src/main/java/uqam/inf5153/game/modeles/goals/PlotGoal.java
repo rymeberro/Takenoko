@@ -1,160 +1,92 @@
 package uqam.inf5153.game.modeles.goals;
 
-import uqam.inf5153.game.modeles.PlayerBoard;
+import uqam.inf5153.game.modeles.Board;
 import uqam.inf5153.game.modeles.Position;
+import uqam.inf5153.game.modeles.Player;
 import uqam.inf5153.game.modeles.Plot;
+import uqam.inf5153.game.modeles.goals.configurations.Configuration;
+
 import java.util.*;
 
 public class PlotGoal extends Goal {
 
-    public enum Configurations {
 
-        STRAIGHT_LINE(2), CURVED_LINE(3), TRIANGLE(4), DIAMOND(4);
-
-        public final int cardPointValue;
-
-        Configurations(int cardPointValue) {
-            this.cardPointValue = cardPointValue;
-        }
-    }
-
-    /*Pour pouvoir retourner les  positions relatives a la premiere afin de valider la configuration*/
-    final class RelativePositions {
-        private final Position secondPos;
-        private final Position thirdPos;
-        private final Position forthPos;
-
-       /* public RelativePositions(Position secondPos, Position thirdPos) {
-            this.secondPos = secondPos;
-            this.thirdPos = thirdPos;
-        }*/
-
-        public RelativePositions(Position secondPos, Position thirdPos, Position forthPos) {
-            this.secondPos = secondPos;
-            this.thirdPos = thirdPos;
-            this.forthPos = forthPos;
-        }
-        public Position getSecondPos() {
-            return secondPos;
-        }
-
-        public Position getThirdPos() {
-            return thirdPos;
-        }
-        public Position getForthPos() {
-            return forthPos;
-        }
-    }
-
-    private Configurations configurationPlot;
     private String color;
     private Position position;
     private List<Plot> tileList;
+    private Configuration config;
+    private int cardPointValue;
+    private Board board;
 
     /*
      * Constructeur d'une carte objectif parcelle
      */
-    public PlotGoal (Configurations configurationPlot) {
-        this.configurationPlot = configurationPlot;
+    public PlotGoal (Configuration config, int cardPointValue) {
+        this.config = config;
+        this.cardPointValue = cardPointValue;
     }
 
-    public static int getCardPointValue(PlotGoal plotGoal) {
-        return plotGoal.configurationPlot.cardPointValue;
-    }
-    /*
-     * get configuration parcelles
-     */
-    public Configurations configurationPlot() {
-        return configurationPlot;
+    public PlotGoal() {
+        this.cardPointValue = 0;
+        this.config = null;
     }
 
-   /* @Override
-    public boolean isObjectifSatisfied(PlayerBoard playerBoard){
-
+    public Configuration getConfig() {
+        return config;
     }
-    */
-
-
-   /*returns the positions to check for each configuration*/
-    public RelativePositions  getStraightLineRelativePositions (Position firstPos){
-        Position secondPos = new Position(firstPos.getX()-1, firstPos.getY()+2);
-        Position thirdPos = new Position(firstPos.getX()-2, firstPos.getY()+4);
-        return new RelativePositions(secondPos, thirdPos, null);
-    }
-
-    public RelativePositions getCurvedLineRelativePositions (Position firstPos){
-        Position secondPos = new Position(firstPos.getX()-1, firstPos.getY()+2);
-        Position thirdPos = new Position(firstPos.getX(), firstPos.getY()+4);
-        return new RelativePositions(secondPos, thirdPos, null);
-    }
-
-    public RelativePositions getTriangleRelativePositions (Position firstPos){
-        Position secondPos = new Position(firstPos.getX()+1, firstPos.getY()+2);
-        Position thirdPos = new Position(firstPos.getX()+2, firstPos.getY());
-        return new RelativePositions(secondPos, thirdPos, null);
-    }
-    public RelativePositions getDiamondRelativePositions (Position firstPos){
-        Position secondPos = new Position(firstPos.getX()-1, firstPos.getY()+2);
-        Position thirdPos = new Position(firstPos.getX()+2, firstPos.getY());
-        Position forthPos = new Position(firstPos.getX()+1, firstPos.getY()+2);
-        return new RelativePositions(secondPos, thirdPos, forthPos);
-    }
-
 
     /*Checks to see if tiles are in the right configuration */
-    public boolean isConfigSatisfied(PlayerBoard playerBoard, Configurations config){
-        tileList = playerBoard.getPlotList();
+    public boolean isObjectifValid(Board board, Configuration config ) {
+        tileList = board.getAllPlot();
         boolean configSatisfied = false;
         boolean sameColors = false;
-        boolean isDiamondObj=false;
-       RelativePositions relativePositions = new RelativePositions(new Position (0,0),new Position (0,0),new Position (0,0) );
+        boolean allIrrigated = false;
+        Configuration.RelativePositions relativePositions = new Configuration.RelativePositions(new Position(0, 0), new Position(0, 0), new Position(0, 0));
         for (int i = 0; i <= tileList.size(); i++) {
-            Plot firstTile = tileList.get(i);
-            Position firstPos = firstTile.getPosition();
+            Plot firstPlot = tileList.get(i);
+            Position firstPos = firstPlot.getPosition();
+            relativePositions =config.getRelativePositions(firstPos);
 
-            switch(config) {
-                case STRAIGHT_LINE:
-                    relativePositions = getStraightLineRelativePositions(firstPos);
-                    break;
-                case CURVED_LINE:
-                     relativePositions = getCurvedLineRelativePositions(firstPos);
-                    break;
+            Plot secondPlot = board.getPlot(relativePositions.getSecondPos());
+            Plot thirdPlot = board.getPlot(relativePositions.getThirdPos());
+            Plot forthPlot = board.getPlot(relativePositions.getForthPos());
 
-                case TRIANGLE:
-                    relativePositions = getTriangleRelativePositions(firstPos);
-                    break;
-
-                case DIAMOND:
-                    relativePositions = getDiamondRelativePositions(firstPos);
-                    isDiamondObj=true;
-                    break;
-
-            }
-
-            sameColors = isSameColors (firstTile,
-                    playerBoard.getTile(relativePositions.getSecondPos()),
-                    playerBoard.getTile(relativePositions.getThirdPos()),
-                    playerBoard.getTile(relativePositions.getForthPos()),
-                    isDiamondObj);
+            allIrrigated = areAllIrrigated(firstPlot, secondPlot, thirdPlot, forthPlot);
+            sameColors = isSameColors(firstPlot, secondPlot, thirdPlot, forthPlot, config);
         }
-        return configSatisfied && sameColors;
+        return configSatisfied && sameColors && allIrrigated;
     }
 
-    /*Compares tile colors */
-    public boolean isSameColors(Plot firstTile,Plot secondTile,Plot thirdTile ,Plot forthTile , boolean isDiamondObj) {
+    public boolean areAllIrrigated (Plot firstPlot, Plot secondPlot, Plot thirdPlot, Plot forthPlot ) {
+        if (board.isPlotIrrigated(firstPlot) && board.isPlotIrrigated(secondPlot) &&
+                board.isPlotIrrigated(thirdPlot) && board.isPlotIrrigated(forthPlot)) {
+            return true;
+        }
+        else return false;
+    }
 
-        if (isDiamondObj) {
-            if (firstTile.getColor().equals(secondTile.getColor()) && thirdTile.getColor().equals(forthTile.getColor())) {
+    public boolean isSameColors (Plot firstPlot, Plot secondPlot, Plot thirdPlot, Plot forthPlot, Configuration config) {
+
+        if (config.getConfigName() == "Diamond") {
+            if (firstPlot.getColor().equals(secondPlot.getColor()) && thirdPlot.getColor().equals(forthPlot.getColor())) {
+                return true;
+            } else return false;
+        } else {
+            if (firstPlot.getColor().equals(secondPlot.getColor())
+                    && secondPlot.getColor().equals(thirdPlot.getColor())) {
                 return true;
             } else return false;
         }
+    }
 
-        else {
-            if (firstTile.getColor().equals(secondTile.getColor())
-                    && secondTile.getColor().equals(thirdTile.getColor())) {
-                return true;
-            } else return false;
-        }
+    public void applyCard(Player player, Configuration config ) {
+        int pointsToAdd = config.getCardPointValue();
+
+        //TO DO: mark card as used/deactivate
+
+        //TO DO: add the points to the player score
+
+        //TO DO: increment number of objective cards used
     }
 
 }

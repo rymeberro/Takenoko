@@ -39,6 +39,18 @@ public class Board {
 		return waterChannelList.getAll();
 	}
 
+	public Plot getPlot(Position position) {
+		ArrayList<Plot> allPlots = plotList.getAll();
+		Plot plot = null;
+		for (int i = 0; i <= allPlots.size() ; i++) {
+			if ((allPlots.get(i)).getPosition() == position) {
+				plot= allPlots.get(i);
+			}
+		}
+
+		return plot;
+	}
+
 	public boolean isPlotIrrigated(Plot element){
 		ArrayList<WaterChannel> wtc = getAllWaterChannel();
 		return this.plotList.isPlotIrrigated(element,wtc);

@@ -21,27 +21,6 @@ public class PlayerBoard {
 		this.countGoalAchieved = 0;
 	}
 
-	public List<Plot> getPlotList () {
-		return plots;
-	}
-
-	public ArrayList<Plot> getTiles() {
-
-		ArrayList<Plot> plotList = new ArrayList<Plot>();
-		return plotList;
-	}
-
-	public Plot getTile(Position position) {
-
-		ArrayList<Plot> plotList = getTiles();
-		Plot plot = new Plot();
-		for (int i = 0; i <= plotList.size(); i++) {
-			if ((plotList.get(i)).getPosition() == position) {
-				plot= plotList.get(i);
-			}
-		}
-		return plot;
-	}
 
 	public int getCountGoalAchieved() { return this.getCountGoalAchieved(); }
 

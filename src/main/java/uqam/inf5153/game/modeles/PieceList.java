@@ -2,7 +2,7 @@ package uqam.inf5153.game.modeles;
 
 import java.util.ArrayList;
 
-public class PieceList implements PlacableList<Piece> {
+public class PieceList extends PlacableList<Piece> {
     private ArrayList<Piece> pieces;
 
     public PieceList()
@@ -15,7 +15,7 @@ public class PieceList implements PlacableList<Piece> {
         return false;
     }
 
-    @Override
+    //@Override
     public boolean verifyIfPlacable(Piece placable) {
         return false;
     }
