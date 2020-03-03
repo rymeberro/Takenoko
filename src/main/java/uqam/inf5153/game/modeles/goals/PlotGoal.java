@@ -15,19 +15,18 @@ public class PlotGoal extends Goal {
     private Position position;
     private List<Plot> tileList;
     private Configuration config;
-    private int cardPointValue;
     private Board board;
 
     /*
      * Constructeur d'une carte objectif parcelle
      */
     public PlotGoal (Configuration config, int cardPointValue) {
+        super(cardPointValue);
         this.config = config;
-        this.cardPointValue = cardPointValue;
     }
 
     public PlotGoal() {
-        this.cardPointValue = 0;
+        super(0);
         this.config = null;
     }
 
@@ -89,4 +88,13 @@ public class PlotGoal extends Goal {
         //TO DO: increment number of objective cards used
     }
 
+    @Override
+    public String description() {
+        return null;
+    }
+
+    @Override
+    public boolean isCompleted() {
+        return false;
+    }
 }

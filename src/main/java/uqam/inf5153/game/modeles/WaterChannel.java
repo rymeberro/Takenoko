@@ -4,10 +4,10 @@ public class WaterChannel implements Placable {
 
 	private Position position;
 
-	WaterChannel(){
+	public WaterChannel(){
 	}
 
-	WaterChannel(Position position){
+	public WaterChannel(Position position){
 		this.position = position;
 	}
 
@@ -18,5 +18,8 @@ public class WaterChannel implements Placable {
 	public void setPosition(double x, double y) {
 		this.position = new Position(x, y);
 	}
+
+	@Override
+	public String toString() { return this.position.toString(); }
 	
 }

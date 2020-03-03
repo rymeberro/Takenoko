@@ -37,7 +37,7 @@ public class WaterChannelList extends PlacableList<WaterChannel> {
     }
 
     public boolean verifyIfPlacable(Plot element1, Plot element2, ArrayList<Plot> list ) {
-        if (!list.contains(element1) && !list.contains(element2)){
+        if (list.contains(element1) && list.contains(element2)){
             boolean res = true;
             boolean valid = false;
             double posX = (element1.getPosition().getX() + element2.getPosition().getX())/2;
@@ -48,18 +48,19 @@ public class WaterChannelList extends PlacableList<WaterChannel> {
                     res = false;
                 }
             }
+            System.out.println(res);
             for (WaterChannel i : waterChannels) {
-                if (i.getPosition().getX() + 0.5 == waterChannel.getPosition().getX() &&
-                        i.getPosition().getY() + 1 == waterChannel.getPosition().getY()) {
+                if (i.getPosition().getX() == waterChannel.getPosition().getX() + 0.5 &&
+                        i.getPosition().getY() == waterChannel.getPosition().getY() + 1) {
                     valid = true;
-                } else if (i.getPosition().getX() - 0.5 == waterChannel.getPosition().getX() &&
-                        i.getPosition().getY() + 1 == waterChannel.getPosition().getY()) {
+                } else if (i.getPosition().getX() == waterChannel.getPosition().getX() - 0.5 &&
+                        i.getPosition().getY() == waterChannel.getPosition().getY() + 1) {
                     valid = true;
-                } else if (i.getPosition().getX() - 0.5 == waterChannel.getPosition().getX() &&
-                        i.getPosition().getY() - 1 == waterChannel.getPosition().getY()) {
+                } else if (i.getPosition().getX() == waterChannel.getPosition().getX() - 0.5 &&
+                        i.getPosition().getY() == waterChannel.getPosition().getY() - 1) {
                     valid = true;
-                } else if (i.getPosition().getX() + 0.5 == waterChannel.getPosition().getX() &&
-                        i.getPosition().getY() - 1 == waterChannel.getPosition().getY()) {
+                } else if (i.getPosition().getX() == waterChannel.getPosition().getX() + 0.5 &&
+                        i.getPosition().getY() == waterChannel.getPosition().getY() - 1) {
                     valid = true;
                 }
             }

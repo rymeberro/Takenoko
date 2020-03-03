@@ -19,7 +19,7 @@ public class WaterDeck implements Deck<WaterChannel> {
 	public Optional<WaterChannel> pick() {
 		try
 		{
-			return Optional.of(this.waterChannels.getFirst());
+			return Optional.of(this.waterChannels.poll());
 		} catch (NoSuchElementException e)
 		{
 			return Optional.empty();
@@ -28,8 +28,10 @@ public class WaterDeck implements Deck<WaterChannel> {
 
 	@Override
 	public void init() {
-		// TODO Auto-generated method stub
-		
+		for(int i = 0; i < 20; i++)
+		{
+			this.waterChannels.add(new WaterChannel());
+		}
 	}
 	
 	@Override

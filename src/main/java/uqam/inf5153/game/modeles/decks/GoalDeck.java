@@ -19,7 +19,7 @@ public class GoalDeck implements Deck<Goal> {
 	public Optional<Goal> pick() {
 		try
 		{
-			return Optional.of(this.goals.getFirst());
+			return Optional.of(this.goals.poll());
 		} catch (NoSuchElementException e)
 		{
 			return Optional.empty();
@@ -28,8 +28,13 @@ public class GoalDeck implements Deck<Goal> {
 
 	@Override
 	public void init() {
-		// TODO Auto-generated method stub
-		
+		for(int i = 0; i < 3; i++)
+		{
+			for(int j = 0; j < 15; j++)
+			{
+
+			}
+		}
 	}
 
 	@Override

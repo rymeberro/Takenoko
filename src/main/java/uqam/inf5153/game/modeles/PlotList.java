@@ -10,6 +10,7 @@ public class PlotList extends PlacableList<Plot> {
     public PlotList()
     {
         this.plots = new ArrayList<Plot>();
+        this.plots.add(new Plot(new Position(0, 0), "ETANG"));
         this.startingPosition = new ArrayList<Position>();
         this.startingPosition.add(new Position(-1,2));
         this.startingPosition.add(new Position(-2,0));
@@ -35,28 +36,35 @@ public class PlotList extends PlacableList<Plot> {
         }else if(!this.plots.contains(plot)){
             int cnt = 0;
             for(Plot i: plots){
-                if(i.getPosition().getX() -1 == plot.getPosition().getX() &&
-                        i.getPosition().getY() +2 == plot.getPosition().getY()){
+                System.out.println(i.getPosition() + " " + plot.getPosition());
+                if(i.getPosition().getX() == plot.getPosition().getX() -1 &&
+                        i.getPosition().getY() == plot.getPosition().getY() +2){
+                    if(i.getColor().equals("ETANG")) return true;
                     cnt++;
                 }
-                if(i.getPosition().getX() -2 == plot.getPosition().getX() &&
+                if(i.getPosition().getX() == plot.getPosition().getX() -2 &&
                         i.getPosition().getY() == plot.getPosition().getY()){
+                    if(i.getColor().equals("ETANG")) return true;
                     cnt++;
                 }
-                if(i.getPosition().getX() -1 == plot.getPosition().getX() &&
-                        i.getPosition().getY() -2 == plot.getPosition().getY()){
+                if(i.getPosition().getX() == plot.getPosition().getX() -1 &&
+                        i.getPosition().getY() == plot.getPosition().getY() -2){
+                    if(i.getColor().equals("ETANG")) return true;
                     cnt++;
                 }
-                if(i.getPosition().getX() +1 == plot.getPosition().getX() &&
-                        i.getPosition().getY() +2 == plot.getPosition().getY()){
+                if(i.getPosition().getX() == plot.getPosition().getX() +1 &&
+                        i.getPosition().getY() == plot.getPosition().getY() +2){
+                    if(i.getColor().equals("ETANG")) return true;
                     cnt++;
                 }
-                if(i.getPosition().getX() +2 == plot.getPosition().getX() &&
+                if(i.getPosition().getX() == plot.getPosition().getX() +2 &&
                         i.getPosition().getY()  == plot.getPosition().getY()){
+                    if(i.getColor().equals("ETANG")) return true;
                     cnt++;
                 }
-                if(i.getPosition().getX() +1 == plot.getPosition().getX() &&
-                        i.getPosition().getY() -2 == plot.getPosition().getY()){
+                if(i.getPosition().getX() == plot.getPosition().getX() +1 &&
+                        i.getPosition().getY() == plot.getPosition().getY() -2){
+                    if(i.getColor().equals("ETANG")) return true;
                     cnt++;
                 }
             }

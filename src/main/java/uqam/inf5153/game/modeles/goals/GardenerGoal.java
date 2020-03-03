@@ -9,9 +9,18 @@ public class GardenerGoal extends Goal {
     /*
      * Constructeur d'une carte objectif jardinier
      * */
-    public GardenerGoal ( ) {
-
+    public GardenerGoal () {
+        super(0);
     }
 
 
+    @Override
+    public String description() {
+        return null;
+    }
+
+    @Override
+    public boolean isCompleted() {
+        return false;
+    }
 }

@@ -2,6 +2,7 @@ package uqam.inf5153.game.modeles;
 
 import java.awt.image.AreaAveragingScaleFilter;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class Board {
@@ -20,7 +21,12 @@ public class Board {
 
 	public boolean placePlot(Plot element, double x, double y) {
 		element.setPosition(x,y);
-		return plotList.place(element);
+		if(plotList.place(element)) return true;
+		else
+		{
+			element.setPosition(0, 0);
+			return false;
+		}
 	}
 
 	public boolean placeWaterChannel(Plot element1, Plot element2) {
@@ -58,6 +64,27 @@ public class Board {
 
 	public boolean moveGardenerTo(double x, double y){
 		return this.gardener.moveTo(x,y,getAllPlot());
+	}
+
+	@Override
+	public String toString()
+	{
+		String str = "";
+		List<Plot> plots = this.plotList.getAll();
+		str += "Parcelles:\n";
+		for(int i = 0; i < plots.size(); i++)
+		{
+			str += i + " - \t " + plots.get(i).toString() + "\n";
+		}
+
+		List<WaterChannel> wtc = this.waterChannelList.getAll();
+		str += "Irrigations:\n";
+		for(int i = 0; i < wtc.size(); i++)
+		{
+			str += i + " - \t " + wtc.get(i).toString() + "\n";
+		}
+		str += "Le Jardinier est en " + this.gardener.getPosition() + "\n";
+		return str;
 	}
 
 

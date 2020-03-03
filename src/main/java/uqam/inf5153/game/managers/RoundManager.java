@@ -27,6 +27,7 @@ public class RoundManager {
             this.currentPlayerId = 0;
         }
         else this.countRound++;
+        this.currentPlayerId++;
     }
 
     /**

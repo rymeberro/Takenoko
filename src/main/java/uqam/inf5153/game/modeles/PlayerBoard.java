@@ -44,4 +44,6 @@ public class PlayerBoard {
 		return this.waterChannels.get(i_index);
 	}
 
+	public List<Goal> getGoals() { return this.goals; }
+
 }

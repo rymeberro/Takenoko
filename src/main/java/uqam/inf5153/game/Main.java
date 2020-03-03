@@ -1,5 +1,12 @@
 package uqam.inf5153.game;
 
+import uqam.inf5153.game.modeles.Plot;
+import uqam.inf5153.game.modeles.goals.Goal;
+
+import javax.swing.text.html.Option;
+import java.util.List;
+import java.util.Optional;
+
 /**
  * Crée par Imen Benzarti le 13/01/2020
  * Une classe qui joue le role de l'interface graphique du jeu.
@@ -35,9 +42,12 @@ public class Main {
 		}while (swValue.length() != 0 );
 		do {
 			for (int i=1; i<=NB_TOTAL_JOUEUR; i++)
-				menuJoueur(i);
+			{
+				menuJoueur(Takenoko.GAME.getRoundManager().getCurrentPlayerId());
+				Takenoko.GAME.getRoundManager().nextPlayer();
+			}
 
-		}while (Takenoko.finPartie(tourActuel, nbTour) );
+		}while (Takenoko.finPartie() );
 		System.out.println("Le gagnant est le joueur : "+ Takenoko.annoncerGagnant());
 	}
 
@@ -136,19 +146,21 @@ public class Main {
 		System.out.println("|   TAKENOKO MENU JOUEUR " +numJoueur+ " : Action Parcelle                        ");
 		System.out.println("===========================================================================");
 		System.out.println("Étape 1 - Piocher 3 parcelles ");
-		String[] parcelles = Takenoko.piocherParcelles(3, numJoueur);
+		List<Plot> parcelles = Takenoko.piocherParcelles(3, numJoueur);
 		System.out.println("Étape 2 - Vous avez pioché les parcelles suivantes : ");
 		Takenoko.afficherParcelles(parcelles);
 		System.out.println("Étape 3 - Choisir une");
-		String parcelleChosie = Keyin.inString(" Entrer la parcelle choisie : ");
+
+		int parcelleChosie = Keyin.inInt(" Entrer la parcelle choisie : ");
+		while(parcelleChosie < 0 || parcelleChosie > 2) parcelleChosie = Keyin.inInt(" Entrer la parcelle choisie : ");
 		System.out.println("Étape 4 - Replacer les deux autres sous la pioche");
-		Takenoko.selectionnerParcelle(parcelles, parcelleChosie );
+		Takenoko.selectionnerParcelle(parcelles.get(parcelleChosie), numJoueur);
 		System.out.println("Étape 5 - Afficher les parcelles du plateau");
-		Takenoko.afficherParcellesPlateau(numJoueur);
+		Takenoko.afficherParcellesPlateau();
 		System.out.println("Étape 6 - Placer une parcelle dans la position (x,y) ");
-		int x = Keyin.inInt(" Entrer la position x : ");
-		int y = Keyin.inInt(" Entrer la position y : ");
-		if (Takenoko.placerParcelleDansPlateau(parcelleChosie, x, y,  numJoueur))
+		double x = Keyin.inDouble(" Entrer la position x : ");
+		double y = Keyin.inDouble(" Entrer la position y : ");
+		if (Takenoko.placerParcelleDansPlateau(parcelles.get(parcelleChosie), x, y))
 			System.out.println("La parcelle est bien placée ");
 		else
 			System.out.println("La parcelle n'est pas placée");
@@ -159,7 +171,11 @@ public class Main {
 		System.out.println("===========================================================================");
 		System.out.println("|   TAKENOKO MENU JOUEUR " +numJoueur+ " : Action Irrigation                        ");
 		System.out.println("===========================================================================");
-		Takenoko.piocherUneIrrigation(numJoueur);
+		if(!Takenoko.piocherUneIrrigation(numJoueur))
+		{
+			System.out.println("|        Il n'y a plus d'irrigation dans la pioche                                 \"");
+			return;
+		}
 		System.out.println("|        Une irrigation est prise                                 ");
 
 		System.out.println("|        Voulez-vous la placer   ?                             ");
@@ -175,11 +191,11 @@ public class Main {
 		System.out.println("|   TAKENOKO MENU JOUEUR " +numJoueur+ " : Action Jardiner                        ");
 		System.out.println("==========================================================================");
 		System.out.println("|        Afficher les parcelles du plateau  (les positions)              ");
-		Takenoko.afficherParcellesPlateau(numJoueur);
+		Takenoko.afficherParcellesPlateau();
 		System.out.println("|        Précisier la nouvelle parcelle (position x,y) du Jardinier      ");
-		int x = Keyin.inInt(" Entrer la position x : ");
-		int y = Keyin.inInt(" Entrer la position y : ");
-		Takenoko.PlacerJardinier(x,y, numJoueur );
+		double x = Keyin.inDouble(" Entrer la position x : ");
+		double y = Keyin.inDouble(" Entrer la position y : ");
+		Takenoko.PlacerJardinier(x,y);
 
 
 
@@ -190,11 +206,11 @@ public class Main {
 		System.out.println("|   TAKENOKO MENU JOUEUR " +numJoueur+ " : Action Panda                         ");
 		System.out.println("==========================================================================");
 		System.out.println("|        Afficher les parcelles du plateau  (les positions)                                   ");
-		Takenoko.afficherParcellesPlateau(numJoueur);
+		Takenoko.afficherParcellesPlateau();
 		System.out.println("|        Précisier la nouvelle parcelle (position x,y) du Panda                   ");
 
-		int x = Keyin.inInt(" Entrer la position x : ");
-		int y = Keyin.inInt(" Entrer la position y : ");
+		double x = Keyin.inDouble(" Entrer la position x : ");
+		double y = Keyin.inDouble(" Entrer la position y : ");
 		Takenoko.PlacerPanda(x,y, numJoueur );
 	}
 	private static void piocherObjectif(int numJoueur) {
@@ -202,12 +218,17 @@ public class Main {
 		System.out.println("==========================================================================");
 		System.out.println("|   TAKENOKO MENU JOUEUR " +numJoueur+ " : Action Objectif                        ");
 		System.out.println("==========================================================================");
-		String objectif = Takenoko.piocherObjectif(numJoueur);
+		Optional<Goal> objectif = Takenoko.piocherObjectif();
+		if(!objectif.isPresent())
+		{
+			System.out.println("|       Il n'y a plus de carte Objectif dans la pioche                                  ");
+			return;
+		}
 		System.out.println("|        Cet objectif est pioché                                  ");
 		System.out.println("|        Pouvez vous le remplir tout de suite (O/N)  ?         ");
 		int reponse = Keyin.inChar(" réponse (O/N) : ");
 		if (reponse == 'o' || reponse == 'O' ) {
-			remplirUnObjectif(numJoueur, objectif);
+			remplirUnObjectif(numJoueur, objectif.get());
 		}
 		System.out.println("|        Si oui, appliquer l'objectif sur le plateau du joueur     ");
 	}
@@ -256,14 +277,14 @@ public class Main {
 		System.out.println("|  TAKENOKO MENU JOUEUR " +numJoueur+ ": décide de placer une irrigation     ");
 		System.out.println("=========================================================================");
 
-		Takenoko.afficherParcellesPlateau(numJoueur);
+		Takenoko.afficherParcellesPlateau();
 		System.out.println("|        Si oui, afficher les parcelles du plateau (les positions)     ");
 		System.out.println("|        Préciser les deux parcelles (x1,y1) et (x2, y2) séparés par l'irrigation ");
-		int x1 = Keyin.inInt(" Entrer la position x1 : ");
-		int y1 = Keyin.inInt(" Entrer la position y1 : ");
-		int x2 = Keyin.inInt(" Entrer la position x2 : ");
-		int y2 = Keyin.inInt(" Entrer la position y2 : ");
-		if (Takenoko.placerUneIrrigation ( x1, y1, x2, y2, numJoueur ))
+		double x1 = Keyin.inDouble(" Entrer la position x1 : ");
+		double y1 = Keyin.inDouble(" Entrer la position y1 : ");
+		double x2 = Keyin.inDouble(" Entrer la position x2 : ");
+		double y2 = Keyin.inDouble(" Entrer la position y2 : ");
+		if (Takenoko.placerUneIrrigation ( x1, y1, x2, y2))
 			System.out.println("L'irrigation est bien placée");
 		else
 			System.out.println("l'irrigation n'est pas placée");
@@ -275,13 +296,15 @@ public class Main {
 		System.out.println("=========================================================================");
 
 		System.out.println("|        Afficher les objectifs du jour");
-		String[] objectifs = Takenoko.afficherObjectifsJoueur (numJoueur);
+		List<Goal> objectifs = Takenoko.afficherObjectifsJoueur (numJoueur);
+		for(Goal g : objectifs) System.out.println(g.description());
 		System.out.println("|        Choisir un objectif à remplir ");
-		String objectif = Takenoko.selectionnerObjectifARemplir (objectifs);
-		remplirUnObjectif( numJoueur,  objectif);
+		Optional<Goal> objectif = Takenoko.selectionnerObjectifARemplir (objectifs);
+		if(objectif.isPresent())
+		remplirUnObjectif( numJoueur,  objectif.get());
 
 	}
-	private static void remplirUnObjectif(int numJoueur, String objectif) {
+	private static void remplirUnObjectif(int numJoueur, Goal objectif) {
 
 		boolean estRempli = Takenoko.remplirObjectif (numJoueur, objectif);
 		if (estRempli)

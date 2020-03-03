@@ -10,11 +10,17 @@ public class PandaGoal extends Goal {
      * Constructeur d'une carte objectif panda
      * */
     public PandaGoal ( ) {
-
+        super(0);
     }
 
 
+    @Override
+    public String description() {
+        return null;
+    }
 
-
-
+    @Override
+    public boolean isCompleted() {
+        return false;
+    }
 }
