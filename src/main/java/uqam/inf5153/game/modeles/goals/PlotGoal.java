@@ -15,6 +15,7 @@ public class PlotGoal extends Goal {
     private String color;
     private Position position;
     private List<Plot> tileList;
+    //private Configuration config;
     private Configuration config;
     private Board board;
 
@@ -92,6 +93,7 @@ public class PlotGoal extends Goal {
         String configDesc = getConfig().getConfigDescription();
         return "Il faut satisfaire cette configuration : " + configDesc;
     }
+
 
     @Override
     public boolean isCompleted() {

@@ -1,4 +1,5 @@
 uqam/inf5153/game/modeles/goals/configurations/CurvedLine.class
+uqam/inf5153/game/modeles/goals/configurations/StraightLine.class
 uqam/inf5153/game/modeles/goals/configurations/Triangle.class
 uqam/inf5153/game/modeles/goals/Goal.class
 uqam/inf5153/game/modeles/decks/WaterDeck.class
@@ -27,7 +28,6 @@ uqam/inf5153/game/modeles/WaterChannelList.class
 uqam/inf5153/game/managers/RoundManager.class
 uqam/inf5153/game/Main.class
 uqam/inf5153/game/modeles/PlayerBoard.class
-uqam/inf5153/game/modeles/goals/configurations/StaightLine.class
 uqam/inf5153/game/modeles/goals/configurations/Diamond.class
 uqam/inf5153/game/Takenoko.class
 uqam/inf5153/game/modeles/goals/PandaGoal.class

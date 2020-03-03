@@ -1,4 +1,3 @@
-/Users/hishamnassar/Desktop/Takenoko/src/main/java/uqam/inf5153/game/modeles/goals/configurations/StaightLine.java
 /Users/hishamnassar/Desktop/Takenoko/src/main/java/uqam/inf5153/game/modeles/Gardener.java
 /Users/hishamnassar/Desktop/Takenoko/src/main/java/uqam/inf5153/game/modeles/PieceList.java
 /Users/hishamnassar/Desktop/Takenoko/src/main/java/uqam/inf5153/game/modeles/decks/GoalDeck.java
@@ -20,6 +19,7 @@
 /Users/hishamnassar/Desktop/Takenoko/src/main/java/uqam/inf5153/game/modeles/goals/GardenerGoal.java
 /Users/hishamnassar/Desktop/Takenoko/src/main/java/uqam/inf5153/game/modeles/Position.java
 /Users/hishamnassar/Desktop/Takenoko/src/main/java/uqam/inf5153/game/managers/RoundManager.java
+/Users/hishamnassar/Desktop/Takenoko/src/main/java/uqam/inf5153/game/modeles/goals/configurations/StraightLine.java
 /Users/hishamnassar/Desktop/Takenoko/src/main/java/uqam/inf5153/game/modeles/goals/configurations/Triangle.java
 /Users/hishamnassar/Desktop/Takenoko/src/main/java/uqam/inf5153/game/modeles/Player.java
 /Users/hishamnassar/Desktop/Takenoko/src/main/java/uqam/inf5153/game/modeles/Panda.java

@@ -6,6 +6,7 @@ public class CurvedLine implements Configuration {
 
     public final static int CARD_POINT_VALUE = 3;
 
+
     @Override
     public RelativePositions getRelativePositions (Position firstPos){
         Position secondPos = new Position(firstPos.getX()-1, firstPos.getY()+2);

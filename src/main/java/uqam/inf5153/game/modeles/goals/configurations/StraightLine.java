@@ -3,7 +3,7 @@ package uqam.inf5153.game.modeles.goals.configurations;
 import uqam.inf5153.game.modeles.Position;
 
 
-public class StaightLine implements Configuration {
+public class StraightLine implements Configuration {
 
     public final static int CARD_POINT_VALUE = 2;
 
@@ -21,7 +21,7 @@ public class StaightLine implements Configuration {
 
     @Override
     public String getConfigName() {
-        return "StaightLine";
+        return "StraightLine";
     }
 
     @Override
