@@ -23,4 +23,9 @@ public class Triangle implements Configuration {
         return "Triangle";
     }
 
+    @Override
+    public String getConfigDescription() {
+        return "Avoir 3 parcelles de même couleur formant un triangle.  ";
+    }
+
 }

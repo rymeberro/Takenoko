@@ -23,4 +23,9 @@ public class CurvedLine implements Configuration {
         return "CurvedLine";
     }
 
+    @Override
+    public String getConfigDescription() {
+        return "Avoir 3 parcelles de même couleur formant une line courbée.  ";
+    }
+
 }

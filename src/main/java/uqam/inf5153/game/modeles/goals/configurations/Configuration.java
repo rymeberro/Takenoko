@@ -26,6 +26,7 @@ public interface Configuration {
     }
 
     String getConfigName();
+    String getConfigDescription();
     RelativePositions  getRelativePositions (Position firstPos);
     int  getCardPointValue ();
 

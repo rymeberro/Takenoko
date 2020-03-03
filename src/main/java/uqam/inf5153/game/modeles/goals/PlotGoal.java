@@ -3,6 +3,7 @@ package uqam.inf5153.game.modeles.goals;
 import uqam.inf5153.game.modeles.Board;
 import uqam.inf5153.game.modeles.Position;
 import uqam.inf5153.game.modeles.Player;
+import uqam.inf5153.game.modeles.PlayerBoard;
 import uqam.inf5153.game.modeles.Plot;
 import uqam.inf5153.game.modeles.goals.configurations.Configuration;
 
@@ -78,19 +79,18 @@ public class PlotGoal extends Goal {
         }
     }
 
-    public void applyCard(Player player, Configuration config ) {
-        int pointsToAdd = config.getCardPointValue();
-
-        //TO DO: mark card as used/deactivate
-
-        //TO DO: add the points to the player score
-
-        //TO DO: increment number of objective cards used
+    public void applyCard(Player player, PlayerBoard playerBoard, PlotGoal plotGoal ) {
+        int pointsToAdd = plotGoal.config.getCardPointValue();
+        playerBoard.removeGoalCard(plotGoal);
+        player.addScore(pointsToAdd);
+        player.incrementCountGoalAchieved();
     }
+
 
     @Override
     public String description() {
-        return null;
+        String configDesc = getConfig().getConfigDescription();
+        return "Il faut satisfaire cette configuration : " + configDesc;
     }
 
     @Override

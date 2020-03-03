@@ -23,4 +23,9 @@ public class Diamond implements Configuration {
     public String getConfigName() {
         return "Diamond";
     }
+
+    @Override
+    public String getConfigDescription() {
+        return "Avoir 4 parcelles en forme de diamond, avec chaque 2 parcelles verticallement adjacentes de même couleur.";
+    }
 }

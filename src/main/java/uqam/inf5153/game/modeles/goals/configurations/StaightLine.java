@@ -24,4 +24,9 @@ public class StaightLine implements Configuration {
         return "StaightLine";
     }
 
+    @Override
+    public String getConfigDescription() {
+        return "Avoir 3 parcelles de même couleur formant une line droite.  ";
+    }
+
 }

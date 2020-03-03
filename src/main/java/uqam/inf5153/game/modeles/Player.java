@@ -14,6 +14,8 @@ public class Player
     private String name;
     private int score;
     private PlayerBoard playerBoard;
+    private int countGoalAchieved;
+
 
     public Player()
     {
@@ -21,6 +23,7 @@ public class Player
         this.name = "";
         this.score = 0;
         this.playerBoard = new PlayerBoard();
+        this.countGoalAchieved=0;
     }
 
     public Player(int i_id, String i_name)
@@ -35,6 +38,9 @@ public class Player
     public String getName() { return this.name; }
     public int getScore() { return this.score; }
     public void addScore(int value) { this.score += value; }
+    public void incrementCountGoalAchieved() { this.countGoalAchieved = countGoalAchieved+1; }
+    public int getCountGoalAchieved() { return countGoalAchieved; }
+
 
     public PlayerBoard getBoard() { return this.playerBoard; }
 }
