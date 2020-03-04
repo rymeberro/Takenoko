@@ -80,7 +80,7 @@ public class PlotGoal extends Goal {
 
     public void applyCard(Player player, PlayerBoard playerBoard, PlotGoal plotGoal ) {
         int pointsToAdd = plotGoal.config.getCardPointValue();
-        playerBoard.removeGoalCard(plotGoal);
+        playerBoard.getGoals().remove(plotGoal);
         player.addScore(pointsToAdd);
         player.incrementCountGoalAchieved();
     }
