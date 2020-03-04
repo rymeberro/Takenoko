@@ -17,9 +17,6 @@ public class GoalDeck implements Deck<Goal> {
 	
 	private LinkedList<Goal> goals;
 
-	private LinkedList<PlotGoal> plotGoalDeck ;
-    private PlotGoal plotGoal ;
-    private Configuration config;
 	//private LinkedList<PlotGoal> pandaGoalDeck ;
 	//private LinkedList<PlotGoal> gardnerGoalDeck ;
 
@@ -27,25 +24,6 @@ public class GoalDeck implements Deck<Goal> {
 	public GoalDeck()
 	{
 		this.goals = new LinkedList<Goal>();
-		this.plotGoalDeck= new LinkedList<PlotGoal>();
-
-        this.plotGoal = new PlotGoal() ;
-
-        this.goals.add(this.plotGoal = new PlotGoal(new StraightLine(), 2));
-        this.goals.add(this.plotGoal = new PlotGoal(new StraightLine(), 2));
-        this.goals.add(this.plotGoal = new PlotGoal(new StraightLine(), 2));
-
-        this.goals.add(this.plotGoal = new PlotGoal(new CurvedLine(), 3));
-        this.goals.add(this.plotGoal = new PlotGoal(new CurvedLine(), 3));
-        this.goals.add(this.plotGoal = new PlotGoal(new CurvedLine(), 3));
-
-        this.goals.add(this.plotGoal = new PlotGoal(new Triangle(), 4));
-        this.goals.add(this.plotGoal = new PlotGoal(new Triangle(), 4));
-        this.goals.add(this.plotGoal = new PlotGoal(new Triangle(), 4));
-
-        this.goals.add(this.plotGoal = new PlotGoal(new Diamond(), 5));
-        this.goals.add(this.plotGoal = new PlotGoal(new Diamond(), 5));
-        this.goals.add(this.plotGoal = new PlotGoal(new Diamond(), 5));
     }
 
 	@Override
@@ -61,13 +39,21 @@ public class GoalDeck implements Deck<Goal> {
 
 	@Override
 	public void init() {
-		for(int i = 0; i < 3; i++)
-		{
-			for(int j = 0; j < 15; j++)
-			{
+		this.goals.add(new PlotGoal(new StraightLine(), 2));
+		this.goals.add(new PlotGoal(new StraightLine(), 2));
+		this.goals.add(new PlotGoal(new StraightLine(), 2));
 
-			}
-		}
+		this.goals.add(new PlotGoal(new CurvedLine(), 3));
+		this.goals.add(new PlotGoal(new CurvedLine(), 3));
+		this.goals.add(new PlotGoal(new CurvedLine(), 3));
+
+		this.goals.add(new PlotGoal(new Triangle(), 4));
+		this.goals.add(new PlotGoal(new Triangle(), 4));
+		this.goals.add(new PlotGoal(new Triangle(), 4));
+
+		this.goals.add(new PlotGoal(new Diamond(), 5));
+		this.goals.add(new PlotGoal(new Diamond(), 5));
+		this.goals.add(new PlotGoal(new Diamond(), 5));
 	}
 
 	@Override
