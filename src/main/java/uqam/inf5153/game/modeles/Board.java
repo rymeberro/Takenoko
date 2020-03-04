@@ -51,7 +51,7 @@ public class Board {
 		ArrayList<Plot> allPlots = plotList.getAll();
 		Optional<Plot> plot = Optional.empty();
 		for (int i = 0; i < allPlots.size() ; i++) {
-			if ((allPlots.get(i)).getPosition() == position) {
+			if ((allPlots.get(i)).getPosition().equals(position)) {
 				plot = Optional.of(allPlots.get(i));
 			}
 		}

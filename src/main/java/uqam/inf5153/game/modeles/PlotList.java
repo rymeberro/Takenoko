@@ -11,6 +11,9 @@ public class PlotList extends PlacableList<Plot> {
     {
         this.plots = new ArrayList<Plot>();
         this.plots.add(new Plot(new Position(0, 0), "ETANG"));
+        this.plots.add(new Plot(new Position(-2, 0), "GREEN"));
+        this.plots.add(new Plot(new Position(-1, 2), "GREEN"));
+        this.plots.add(new Plot(new Position(-1, -2), "GREEN"));
         this.startingPosition = new ArrayList<Position>();
         this.startingPosition.add(new Position(-1,2));
         this.startingPosition.add(new Position(-2,0));

@@ -39,11 +39,10 @@ public class PlotGoal extends Goal {
     /*Checks to see if tiles are in the right configuration */
     public boolean isObjectifValid(Board board, Configuration config ) {
         tileList = board.getAllPlot();
-        boolean configSatisfied = false;
         boolean sameColors = false;
         boolean allIrrigated = false;
         Configuration.RelativePositions relativePositions = new Configuration.RelativePositions(new Position(0, 0), new Position(0, 0), new Position(0, 0));
-        for (int i = 0; i <= tileList.size(); i++) {
+        for (int i = 0; i < tileList.size(); i++) {
             Plot firstPlot = tileList.get(i);
             Position firstPos = firstPlot.getPosition();
             relativePositions =config.getRelativePositions(firstPos);
@@ -52,26 +51,28 @@ public class PlotGoal extends Goal {
             Optional<Plot> thirdPlot = board.getPlot(relativePositions.getThirdPos());
             Optional<Plot> forthPlot = board.getPlot(relativePositions.getForthPos());
 
-            if(!secondPlot.isPresent() || !thirdPlot.isPresent() || !forthPlot.isPresent()) return false;
+            if(!secondPlot.isPresent() || !thirdPlot.isPresent() || (config.getConfigName().equals("Diamond") ? !forthPlot.isPresent() : false)) continue;
 
             allIrrigated = board.isPlotIrrigated(firstPlot) && board.isPlotIrrigated(secondPlot.get()) &&
-                            board.isPlotIrrigated(thirdPlot.get()) && board.isPlotIrrigated(forthPlot.get());
+                            board.isPlotIrrigated(thirdPlot.get()) &&
+                            (config.getConfigName().equals("Diamond") ? board.isPlotIrrigated(forthPlot.get()) : true);
 
-            sameColors = isSameColors(firstPlot, secondPlot.get(), thirdPlot.get(), forthPlot.get(), config);
+            sameColors = isSameColors(firstPlot, secondPlot, thirdPlot, forthPlot, config);
+            if(allIrrigated && sameColors) return true;
         }
-        return configSatisfied && sameColors && allIrrigated;
+        return false;
     }
 
 
-    public boolean isSameColors (Plot firstPlot, Plot secondPlot, Plot thirdPlot, Plot forthPlot, Configuration config) {
+    public boolean isSameColors (Plot firstPlot, Optional<Plot> secondPlot, Optional<Plot> thirdPlot, Optional<Plot> forthPlot, Configuration config) {
 
         if (config.getConfigName().equals("Diamond")) {
-            if (firstPlot.getColor().equals(secondPlot.getColor()) && thirdPlot.getColor().equals(forthPlot.getColor())) {
+            if (firstPlot.getColor().equals(secondPlot.get().getColor()) && thirdPlot.get().getColor().equals(forthPlot.get().getColor())) {
                 return true;
             } else return false;
         } else {
-            if (firstPlot.getColor().equals(secondPlot.getColor())
-                    && secondPlot.getColor().equals(thirdPlot.getColor())) {
+            if (firstPlot.getColor().equals(secondPlot.get().getColor())
+                    && secondPlot.get().getColor().equals(thirdPlot.get().getColor())) {
                 return true;
             } else return false;
         }
@@ -94,6 +95,6 @@ public class PlotGoal extends Goal {
 
     @Override
     public boolean isCompleted(Board board) {
-        return this.isObjectifValid(board, this.config);
+       return this.isObjectifValid(board, this.config);
     }
 }

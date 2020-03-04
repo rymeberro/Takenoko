@@ -21,7 +21,7 @@ public class RoundManager {
      */
     public void nextPlayer()
     {
-        if(this.currentPlayerId > this.maxPlayer)
+        if(this.currentPlayerId >= this.maxPlayer)
         {
             this.nextRound();
             this.currentPlayerId = 0;
