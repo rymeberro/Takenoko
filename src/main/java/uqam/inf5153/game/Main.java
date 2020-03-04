@@ -68,7 +68,7 @@ public class Main {
 			case 1:
 				System.out.println("Déterminer les condition Climatiques");
 				System.out.println("Cette fonctionnalité sera réalisée dans la deuxième partie  du projet");
-				break;
+				menuJoueur(numJoueur);
 			case 2:
 				System.out.println("\n\n\nEffectuer des actions\n\n\n");
 				choixAction(numJoueur);
@@ -277,7 +277,11 @@ public class Main {
 		System.out.println("=========================================================================");
 		System.out.println("|  TAKENOKO MENU JOUEUR " +numJoueur+ ": décide de placer une irrigation     ");
 		System.out.println("=========================================================================");
-
+		if(!Takenoko.GAME.getPlayers().get(numJoueur).getBoard().hasWaterChannel())
+		{
+			System.out.println("|        Vous n'avez pas d'irrigation     ");
+			return;
+		}
 		Takenoko.afficherParcellesPlateau();
 		System.out.println("|        Si oui, afficher les parcelles du plateau (les positions)     ");
 		System.out.println("|        Préciser les deux parcelles (x1,y1) et (x2, y2) séparés par l'irrigation ");

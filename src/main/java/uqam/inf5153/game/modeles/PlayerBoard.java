@@ -1,6 +1,7 @@
 package uqam.inf5153.game.modeles;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import uqam.inf5153.game.modeles.goals.Goal;
@@ -8,19 +9,19 @@ import uqam.inf5153.game.modeles.goals.PlotGoal;
 
 public class PlayerBoard {
 
-	private List<Plot> plots;
-	private List<Goal> goals;
-	private List<PlotGoal> plotGoalCards;
-	private List<WaterChannel> waterChannels;
+	private LinkedList<Plot> plots;
+	private LinkedList<Goal> goals;
+	private LinkedList<PlotGoal> plotGoalCards;
+	private LinkedList<WaterChannel> waterChannels;
 	private int countGoalAchieved;
 
 
 	public PlayerBoard()
 	{
-		this.plots = new ArrayList<Plot>();
-		this.goals = new ArrayList<Goal>();
-		this.plotGoalCards = new ArrayList<PlotGoal>();
-		this.waterChannels = new ArrayList<WaterChannel>();
+		this.plots = new LinkedList<Plot>();
+		this.goals = new LinkedList<Goal>();
+		this.plotGoalCards = new LinkedList<PlotGoal>();
+		this.waterChannels = new LinkedList<WaterChannel>();
 		this.countGoalAchieved = 0;
 	}
 
@@ -55,10 +56,9 @@ public class PlayerBoard {
 		this.waterChannels.add(i_irrigation);
 	}
 
-	public WaterChannel popWaterChannel(int i_index)
-	{
-		return this.waterChannels.get(i_index);
-	}
+	public WaterChannel popWaterChannel() {	return this.waterChannels.poll(); }
+
+	public boolean hasWaterChannel() { return !this.waterChannels.isEmpty(); }
 
 	public List<Goal> getGoals() { return this.goals; }
 
