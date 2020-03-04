@@ -48,7 +48,7 @@ public class Board {
 	public Plot getPlot(Position position) {
 		ArrayList<Plot> allPlots = plotList.getAll();
 		Plot plot = null;
-		for (int i = 0; i <= allPlots.size() ; i++) {
+		for (int i = 0; i < allPlots.size() ; i++) {
 			if ((allPlots.get(i)).getPosition() == position) {
 				plot= allPlots.get(i);
 			}
