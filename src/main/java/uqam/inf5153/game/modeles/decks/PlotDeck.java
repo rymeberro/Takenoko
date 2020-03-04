@@ -48,8 +48,4 @@ public class PlotDeck implements Deck<Plot> {
 		return this.plots.isEmpty();
 	}
 
-	public void addPlot(Plot i_plot)
-	{
-		this.plots.add(i_plot);
-	}
 }
