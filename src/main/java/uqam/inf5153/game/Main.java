@@ -20,7 +20,7 @@ public class Main {
 	 * son 9e objectif s
 	 * La fin de partie est detecté à travers la méthode Partie
 	 */
-	public final static int nbTour = 3;
+	//public final static int nbTour = 3;
 
 	/*
 	 * numéro du tour actuel : vous avec le choix de garder ou non cette variable qui représente
@@ -47,7 +47,7 @@ public class Main {
 				Takenoko.GAME.getRoundManager().nextPlayer();
 			}
 
-		}while (Takenoko.finPartie() );
+		}while (!Takenoko.finPartie() );
 		System.out.println("Le gagnant est le joueur : "+ Takenoko.annoncerGagnant());
 	}
 
@@ -224,7 +224,8 @@ public class Main {
 			System.out.println("|       Il n'y a plus de carte Objectif dans la pioche                                  ");
 			return;
 		}
-		System.out.println("|        Cet objectif est pioché                                  ");
+		System.out.println("|        Description de l'objectif pioché:                                  ");
+		System.out.println("|        \t " + objectif.get().description() + "                                  ");
 		System.out.println("|        Pouvez vous le remplir tout de suite (O/N)  ?         ");
 		int reponse = Keyin.inChar(" réponse (O/N) : ");
 		if (reponse == 'o' || reponse == 'O' ) {

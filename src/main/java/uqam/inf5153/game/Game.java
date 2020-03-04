@@ -35,7 +35,7 @@ public class Game {
 		this.players = new ArrayList<Player>();
 
 		for(int i = 0; i < Game.COUNT_PLAYER; i++)
-			this.players.add(new Player(i, "Player " + (i + 1)));
+			this.players.add(new Player(i, "Player " + i));
 
 		this.plotDeck = new PlotDeck();
 		this.goalDeck = new GoalDeck();
