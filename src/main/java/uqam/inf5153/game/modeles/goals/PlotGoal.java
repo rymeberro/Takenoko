@@ -63,7 +63,7 @@ public class PlotGoal extends Goal {
 
     public boolean isSameColors (Plot firstPlot, Plot secondPlot, Plot thirdPlot, Plot forthPlot, Configuration config) {
 
-        if (config.getConfigName() == "Diamond") {
+        if (config.getConfigName().equals("Diamond")) {
             if (firstPlot.getColor().equals(secondPlot.getColor()) && thirdPlot.getColor().equals(forthPlot.getColor())) {
                 return true;
             } else return false;
