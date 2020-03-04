@@ -90,7 +90,7 @@ public class Board {
 	}
 
 	public Gardener getGardener() {
-		return gardener;
+		return this.gardener;
 	}
 
 
