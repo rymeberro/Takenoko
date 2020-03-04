@@ -1,5 +1,6 @@
 package uqam.inf5153.game.modeles.decks;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -54,6 +55,8 @@ public class GoalDeck implements Deck<Goal> {
 		this.goals.add(new PlotGoal(new Diamond(), 5));
 		this.goals.add(new PlotGoal(new Diamond(), 5));
 		this.goals.add(new PlotGoal(new Diamond(), 5));
+
+		Collections.shuffle(this.goals);
 	}
 
 	@Override
