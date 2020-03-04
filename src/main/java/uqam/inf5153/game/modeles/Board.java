@@ -1,8 +1,10 @@
 package uqam.inf5153.game.modeles;
 
+import javax.swing.text.html.Option;
 import java.awt.image.AreaAveragingScaleFilter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 public class Board {
@@ -45,12 +47,12 @@ public class Board {
 		return waterChannelList.getAll();
 	}
 
-	public Plot getPlot(Position position) {
+	public Optional<Plot> getPlot(Position position) {
 		ArrayList<Plot> allPlots = plotList.getAll();
-		Plot plot = null;
+		Optional<Plot> plot = Optional.empty();
 		for (int i = 0; i < allPlots.size() ; i++) {
 			if ((allPlots.get(i)).getPosition() == position) {
-				plot= allPlots.get(i);
+				plot = Optional.of(allPlots.get(i));
 			}
 		}
 

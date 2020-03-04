@@ -48,14 +48,16 @@ public class PlotGoal extends Goal {
             Position firstPos = firstPlot.getPosition();
             relativePositions =config.getRelativePositions(firstPos);
 
-            Plot secondPlot = board.getPlot(relativePositions.getSecondPos());
-            Plot thirdPlot = board.getPlot(relativePositions.getThirdPos());
-            Plot forthPlot = board.getPlot(relativePositions.getForthPos());
+            Optional<Plot> secondPlot = board.getPlot(relativePositions.getSecondPos());
+            Optional<Plot> thirdPlot = board.getPlot(relativePositions.getThirdPos());
+            Optional<Plot> forthPlot = board.getPlot(relativePositions.getForthPos());
 
-            allIrrigated = board.isPlotIrrigated(firstPlot) && board.isPlotIrrigated(secondPlot) &&
-                            board.isPlotIrrigated(thirdPlot) && board.isPlotIrrigated(forthPlot);
+            if(!secondPlot.isPresent() || !thirdPlot.isPresent() || !forthPlot.isPresent()) return false;
 
-            sameColors = isSameColors(firstPlot, secondPlot, thirdPlot, forthPlot, config);
+            allIrrigated = board.isPlotIrrigated(firstPlot) && board.isPlotIrrigated(secondPlot.get()) &&
+                            board.isPlotIrrigated(thirdPlot.get()) && board.isPlotIrrigated(forthPlot.get());
+
+            sameColors = isSameColors(firstPlot, secondPlot.get(), thirdPlot.get(), forthPlot.get(), config);
         }
         return configSatisfied && sameColors && allIrrigated;
     }
