@@ -138,7 +138,7 @@ public class Takenoko {
 	 * retourne true si l'objectif est rempli, sinon elle retourne false.
 	 */
 	public static boolean remplirObjectif(int joueur, Goal objectif) {
-		if(objectif.isCompleted())
+		if(objectif.isCompleted(GAME.getBoard()))
 		{
 			GAME.getPlayers().get(joueur - 1).addScore(objectif.getScore());
 			GAME.getPlayers().get(joueur - 1).getBoard().getGoals().remove(objectif);
