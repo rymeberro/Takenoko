@@ -1,5 +1,6 @@
 package uqam.inf5153.game.modeles.goals;
 
+import uqam.inf5153.game.modeles.Board;
 import uqam.inf5153.game.modeles.PlayerBoard;
 
 public class GardenerGoal extends Goal {
@@ -20,7 +21,7 @@ public class GardenerGoal extends Goal {
     }
 
     @Override
-    public boolean isCompleted() {
+    public boolean isCompleted(Board board) {
         return false;
     }
 }

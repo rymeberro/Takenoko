@@ -2,6 +2,7 @@ package uqam.inf5153.game.modeles.goals;
 
 /*representation des cartes objectifs en general*/
 
+import uqam.inf5153.game.modeles.Board;
 import uqam.inf5153.game.modeles.PlayerBoard;
 
 public abstract class Goal {
@@ -16,7 +17,7 @@ public abstract class Goal {
     }
 
     public abstract String description();
-    public abstract boolean isCompleted();
+    public abstract boolean isCompleted(Board board);
 
     public int getScore() { return this.score; }
 

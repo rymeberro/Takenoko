@@ -96,7 +96,7 @@ public class PlotGoal extends Goal {
 
 
     @Override
-    public boolean isCompleted() {
-        return false;
+    public boolean isCompleted(Board board) {
+        return this.isObjectifValid(board, this.config);
     }
 }
