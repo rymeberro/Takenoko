@@ -52,19 +52,14 @@ public class PlotGoal extends Goal {
             Plot thirdPlot = board.getPlot(relativePositions.getThirdPos());
             Plot forthPlot = board.getPlot(relativePositions.getForthPos());
 
-            allIrrigated = areAllIrrigated(firstPlot, secondPlot, thirdPlot, forthPlot);
+            allIrrigated = board.isPlotIrrigated(firstPlot) && board.isPlotIrrigated(secondPlot) &&
+                            board.isPlotIrrigated(thirdPlot) && board.isPlotIrrigated(forthPlot);
+
             sameColors = isSameColors(firstPlot, secondPlot, thirdPlot, forthPlot, config);
         }
         return configSatisfied && sameColors && allIrrigated;
     }
 
-    public boolean areAllIrrigated (Plot firstPlot, Plot secondPlot, Plot thirdPlot, Plot forthPlot ) {
-        if (board.isPlotIrrigated(firstPlot) && board.isPlotIrrigated(secondPlot) &&
-                board.isPlotIrrigated(thirdPlot) && board.isPlotIrrigated(forthPlot)) {
-            return true;
-        }
-        else return false;
-    }
 
     public boolean isSameColors (Plot firstPlot, Plot secondPlot, Plot thirdPlot, Plot forthPlot, Configuration config) {
 
