@@ -89,5 +89,9 @@ public class Board {
 		return str;
 	}
 
+	public Gardener getGardener() {
+		return gardener;
+	}
+
 
 }
