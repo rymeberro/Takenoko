@@ -195,9 +195,12 @@ public class Main {
 		System.out.println("|        Précisier la nouvelle parcelle (position x,y) du Jardinier      ");
 		double x = Keyin.inDouble(" Entrer la position x : ");
 		double y = Keyin.inDouble(" Entrer la position y : ");
-		Takenoko.PlacerJardinier(x,y);
-
-
+		if(Takenoko.PlacerJardinier(x,y))
+		{
+			System.out.println("        Le Jardinier a été bien déplacé sur la parcelle (" + x + ", " + y + ")        ");
+		} else {
+			System.out.println("        Le Jardinier n'a pas été bien déplacé       ");
+		}
 
 	}
 	private static void deplacerPanda(int numJoueur) {
@@ -277,7 +280,7 @@ public class Main {
 		System.out.println("=========================================================================");
 		System.out.println("|  TAKENOKO MENU JOUEUR " +numJoueur+ ": décide de placer une irrigation     ");
 		System.out.println("=========================================================================");
-		if(!Takenoko.GAME.getPlayers().get(numJoueur).getBoard().hasWaterChannel())
+		if(!Takenoko.GAME.getPlayers().get(numJoueur-1).getBoard().hasWaterChannel())
 		{
 			System.out.println("|        Vous n'avez pas d'irrigation     ");
 			return;
