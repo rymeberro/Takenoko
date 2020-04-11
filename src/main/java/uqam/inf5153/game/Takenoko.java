@@ -176,8 +176,7 @@ public class Takenoko {
 	 * retourne true si le panda est déplacé, sinon elle retourne false
 	 */
 	public static boolean PlacerPanda(double x, double y, int joueur) {
-		// TODO Auto-generated method stub
-		return true;
+		return GAME.getBoard().movePandaTo(x, y);
 	}
 
 	/**

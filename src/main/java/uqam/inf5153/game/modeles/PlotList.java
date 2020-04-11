@@ -125,4 +125,22 @@ public class PlotList extends PlacableList<Plot> {
         }
         return res;
     }
+
+    public boolean addBamboo(Plot plot){
+        for(Plot i: plots){
+            if (plot.equals(i)){
+                return i.addBamboo();
+            }
+        }
+        return false;
+    }
+
+    public boolean removeBamboo(Plot plot){
+        for(Plot i: plots){
+            if (plot.equals(i)){
+                return i.removeBamboo();
+            }
+        }
+        return false;
+    }
 }
