@@ -1,10 +1,13 @@
 package uqam.inf5153.game.modeles;
 
+import uqam.inf5153.game.modeles.amenagements.Amenagement;
+
 public class Plot implements Placable {
 
 	private Position position;
 	private String color;
 	private int id;
+	private Amenagement amenagement;
 
 	private static int instance_id = 0;
 
@@ -16,9 +19,7 @@ public class Plot implements Placable {
 		Plot.instance_id++;
 	}
 
-	public Plot (){
-
-	}
+	public Plot(){}
 
 	@Override
 	public Position getPosition() {
@@ -49,5 +50,10 @@ public class Plot implements Placable {
 		if(!(o instanceof Plot)) return false;
 		Plot plot = (Plot) o;
 		return plot.getPosition().equals(this.getPosition()) && this.getColor().equals(plot.getColor());
+	}
+
+	public void setAmenagement(Amenagement i_amenagement)
+	{
+		this.amenagement = i_amenagement;
 	}
 }
