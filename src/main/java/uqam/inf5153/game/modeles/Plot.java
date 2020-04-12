@@ -8,6 +8,7 @@ public class Plot implements Placable {
 	private String color;
 	private int id;
 	private Amenagement amenagement;
+	private int nbOfBamboo;
 
 	private static int instance_id = 0;
 
@@ -17,6 +18,7 @@ public class Plot implements Placable {
 		this.position= position;
 		this.id = Plot.instance_id;
 		Plot.instance_id++;
+		this. nbOfBamboo = 0;
 	}
 
 	public Plot(){}
@@ -50,6 +52,24 @@ public class Plot implements Placable {
 		if(!(o instanceof Plot)) return false;
 		Plot plot = (Plot) o;
 		return plot.getPosition().equals(this.getPosition()) && this.getColor().equals(plot.getColor());
+	}
+
+	public boolean addBamboo(){
+		if(this.nbOfBamboo < 4) {
+			this.nbOfBamboo = this.nbOfBamboo + 1;
+			return true;
+		}else {
+			return false;
+		}
+	}
+
+	public boolean removeBamboo(){
+		if(this.nbOfBamboo > 0) {
+			this.nbOfBamboo = this.nbOfBamboo - 1;
+			return true;
+		}else {
+			return false;
+		}
 	}
 
 	public void setAmenagement(Amenagement i_amenagement)
