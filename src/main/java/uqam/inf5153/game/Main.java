@@ -14,7 +14,7 @@ import java.util.Optional;
  */
 public class Main {
 	public final static int NB_ACTIONS_PAR_TOUR = 2;
-	public final static int NB_TOTAL_JOUEUR =  2 ;
+	public final static int NB_TOTAL_JOUEUR =  4;
 	/* Une constante fictive pour représenter temporairement le dernier tour
 	 * Sinon vous devez implémenter le jeu tel que la partie prend fin lorsqu’un joueur atteint
 	 * son 9e objectif s
