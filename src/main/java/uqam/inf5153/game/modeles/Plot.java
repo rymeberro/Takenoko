@@ -43,7 +43,7 @@ public class Plot implements Placable {
 	}
 
 	@Override
-	public String toString() { return this.color + " at " + this.position; }
+	public String toString() { return this.color + " at " + this.position + " with " +  this.nbOfBamboo + " bamboo(s)"; }
 
 	@Override
 	public boolean equals(Object o)
@@ -76,4 +76,9 @@ public class Plot implements Placable {
 	{
 		this.amenagement = i_amenagement;
 	}
+	public Amenagement getAmenagement()
+	{
+		return this.amenagement;
+	}
+
 }

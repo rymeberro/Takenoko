@@ -149,6 +149,7 @@ public class Board {
 			str += i + " - \t " + wtc.get(i).toString() + "\n";
 		}
 		str += "Le Jardinier est en " + this.gardener.getPosition() + "\n";
+		str += "Le Panda est en " + this.panda.getPosition() + "\n";
 		return str;
 	}
 

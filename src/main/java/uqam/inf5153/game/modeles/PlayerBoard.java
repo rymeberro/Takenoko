@@ -38,19 +38,6 @@ public class PlayerBoard {
 		this.goals.add(i_goal);
 	}
 
-	public void addPlotGoal(PlotGoal i_plotGoal)
-	{
-		this.plotGoalCards.add(i_plotGoal);
-	}
-
-	public List<PlotGoal> getPlotGoalCards(){
-		return plotGoalCards;
-	}
-
-	public void removeGoalCard(PlotGoal plotGoalCard){
-		this.plotGoalCards.remove(plotGoalCard);
-	}
-
 	public void addWaterChannel(WaterChannel i_irrigation)
 	{
 		this.waterChannels.add(i_irrigation);

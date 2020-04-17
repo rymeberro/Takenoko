@@ -10,7 +10,7 @@ public class CurvedLine implements Configuration {
     @Override
     public RelativePositions getRelativePositions (Position firstPos){
         Position secondPos = new Position(firstPos.getX()-1, firstPos.getY()+2);
-        Position thirdPos = new Position(firstPos.getX(), firstPos.getY()+4);
+        Position thirdPos = new Position(firstPos.getX()-1, firstPos.getY()-2);
         return new RelativePositions(secondPos, thirdPos, null);
     }
 

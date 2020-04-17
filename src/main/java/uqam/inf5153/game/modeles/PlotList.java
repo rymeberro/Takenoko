@@ -36,7 +36,6 @@ public class PlotList extends PlacableList<Plot> {
         }else if(!this.plots.contains(plot)){
             int cnt = 0;
             for(Plot i: plots){
-                System.out.println(i.getPosition() + " " + plot.getPosition());
                 if(i.getPosition().getX() == plot.getPosition().getX() -1 &&
                         i.getPosition().getY() == plot.getPosition().getY() +2){
                     if(i.getColor().equals("ETANG")) return true;
@@ -101,6 +100,8 @@ public class PlotList extends PlacableList<Plot> {
         if (!this.plots.contains(element)){
             return false;
         }else{
+            if(element.getAmenagement() != null)
+                if(element.getAmenagement().getAmenagement().equals("Bassin")) return true;
             for(WaterChannel w: wtc){
                 if (element.getPosition().getX() + 1 == w.getPosition().getX()
                         && element.getPosition().getY() == w.getPosition().getY()){
