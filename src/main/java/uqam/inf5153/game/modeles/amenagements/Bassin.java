@@ -1,12 +1,31 @@
 package uqam.inf5153.game.modeles.amenagements;
 
-public class Bassin implements Amenagement
+import uqam.inf5153.game.modeles.Plot;
+import uqam.inf5153.game.modeles.Position;
+
+public class Bassin extends ArrangedPlot
 {
-    private String amenagementName = "Bassin";
+
+    public Bassin(Position position, String color)
+    {
+        super(position, color);
+        super.addBamboo();
+    }
+
+    @Override
+    public void onGardenerLandsOnArrangedPlot() {
+        super.addBamboo();
+    }
+
+    @Override
+    public void onPandaLandsOnArrangedPlot() {
+        super.removeBamboo();
+    }
 
     @Override
     public String getAmenagement()
     {
-        return amenagementName;
+        return "Bassin";
     }
+
 }

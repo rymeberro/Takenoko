@@ -1,5 +1,7 @@
 package uqam.inf5153.game.modeles;
 
+import uqam.inf5153.game.modeles.amenagements.ArrangedPlot;
+
 import java.util.ArrayList;
 
 public class PlotList extends PlacableList<Plot> {
@@ -22,6 +24,11 @@ public class PlotList extends PlacableList<Plot> {
 
     @Override
     public boolean place(Plot plot) {
+        if(plot.getPosition().equals(new Position(0, 0)))
+        {
+            System.out.println("Vous ne pouvez pas placer votre parcelle à la position de l'étang.");
+            return false;
+        }
         if(verifyIfPlacable(plot)){
             plots.add(plot);
             return true;
@@ -100,8 +107,8 @@ public class PlotList extends PlacableList<Plot> {
         if (!this.plots.contains(element)){
             return false;
         }else{
-            if(element.getAmenagement() != null)
-                if(element.getAmenagement().getAmenagement().equals("Bassin")) return true;
+            if(element instanceof ArrangedPlot)
+                if(((ArrangedPlot) element).getAmenagement().equals("Bassin")) return true;
             for(WaterChannel w: wtc){
                 if (element.getPosition().getX() + 1 == w.getPosition().getX()
                         && element.getPosition().getY() == w.getPosition().getY()){

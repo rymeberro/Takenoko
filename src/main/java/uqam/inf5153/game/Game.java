@@ -7,7 +7,6 @@ import java.util.Optional;
 import uqam.inf5153.game.managers.DeckManager;
 import uqam.inf5153.game.managers.RoundManager;
 import uqam.inf5153.game.modeles.*;
-import uqam.inf5153.game.modeles.decks.AmenagementsDeck;
 import uqam.inf5153.game.modeles.decks.GoalDeck;
 import uqam.inf5153.game.modeles.decks.PlotDeck;
 import uqam.inf5153.game.modeles.decks.WaterDeck;
@@ -23,7 +22,6 @@ public class Game {
 	private PlotDeck plotDeck;
 	private GoalDeck goalDeck;
 	private WaterDeck waterDeck;
-	private AmenagementsDeck amenagementsDeck;
 
 	private Board board;
 
@@ -42,12 +40,10 @@ public class Game {
 		this.plotDeck = new PlotDeck();
 		this.goalDeck = new GoalDeck();
 		this.waterDeck = new WaterDeck();
-		this.amenagementsDeck = new AmenagementsDeck();
 
 		this.plotDeck.init();
 		this.goalDeck.init();
 		this.waterDeck.init();
-		this.amenagementsDeck.init();
 
 		this.board = new Board();
 	}

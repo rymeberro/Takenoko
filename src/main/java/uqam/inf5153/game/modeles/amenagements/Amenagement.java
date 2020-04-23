@@ -1,6 +1,6 @@
 package uqam.inf5153.game.modeles.amenagements;
 
-public interface Amenagement
+public interface Amenagement extends EntityListener
 {
 
     /** Get le type d'amenagement
@@ -8,4 +8,8 @@ public interface Amenagement
      * @return
      */
     public String getAmenagement();
+
+    public void onGardenerLandsOnArrangedPlot();
+    public void onPandaLandsOnArrangedPlot();
+
 }

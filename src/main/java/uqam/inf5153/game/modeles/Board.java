@@ -72,13 +72,11 @@ public class Board {
 			Plot targetPlot = getPlot(position).get();
 			ArrayList<Plot> list = getPlotAround(x,y);
 			if(isPlotIrrigated(targetPlot)){
-				addBamboo(targetPlot);
-				System.out.print("yay2");
+				targetPlot.onGardenerLandsOn();
 			}
 			for(Plot i: list){
 				if(isPlotIrrigated(i) && i.getColor().equals(targetPlot.getColor())){
-					addBamboo(i);
-					System.out.print("yay");
+					i.onGardenerLandsOn();
 				}
 			}
 			return true;
@@ -91,18 +89,10 @@ public class Board {
 		Position position = new Position(x,y);
 		if(this.panda.moveTo(x,y,getAllPlot())){
 			Plot targetPlot = getPlot(position).get();
-			removeBamboo(targetPlot);
+			targetPlot.onPandaLandsOn();
 			return true;
 		};
 		return false;
-	}
-
-	private boolean removeBamboo(Plot plot){
-		return plotList.removeBamboo(plot);
-	}
-
-	private boolean addBamboo(Plot plot){
-		return plotList.addBamboo(plot);
 	}
 
 	private ArrayList<Plot> getPlotAround(double x, double y){

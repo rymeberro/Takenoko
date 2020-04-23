@@ -1,13 +1,13 @@
 package uqam.inf5153.game.modeles;
 
 import uqam.inf5153.game.modeles.amenagements.Amenagement;
+import uqam.inf5153.game.modeles.amenagements.EntityListener;
 
-public class Plot implements Placable {
+public class Plot implements Placable, EntityListener {
 
 	private Position position;
 	private String color;
 	private int id;
-	private Amenagement amenagement;
 	private int nbOfBamboo;
 
 	private static int instance_id = 0;
@@ -72,13 +72,15 @@ public class Plot implements Placable {
 		}
 	}
 
-	public void setAmenagement(Amenagement i_amenagement)
-	{
-		this.amenagement = i_amenagement;
-	}
-	public Amenagement getAmenagement()
-	{
-		return this.amenagement;
+	public int countBamboo() { return this.nbOfBamboo; }
+
+	@Override
+	public void onGardenerLandsOn() {
+		this.addBamboo();
 	}
 
+	@Override
+	public void onPandaLandsOn() {
+		this.removeBamboo();
+	}
 }
